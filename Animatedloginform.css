@@ -1,0 +1,154 @@
+Html {
+Height: 100%;
+}
+Body {
+Margin:0;
+Padding:0;
+Font-Family: Sans-Serif;
+Background: Linear-Gradient(#141e30, #243b55);
+}
+.Login-Box {
+Position: Absolute;
+Top: 50%;
+Left: 50%;
+Width: 400px;
+Padding: 40px;
+Transform: Translate(-50%, -50%);
+Background: Rgba(0,0,0,.5);
+Box-Sizing: Border-Box;
+Box-Shadow: 0 15px 25px Rgba(0,0,0,.6);
+Border-Radius: 10px;
+}
+.Login-Box H2 {
+Margin: 0 0 30px;
+Padding: 0;
+Color: #Fff;
+Text-Align: Center;
+}
+.Login-Box .User-Box {
+Position: Relative;
+}
+.Login-Box .User-Box Input {
+Width: 100%;
+Padding: 10px 0;
+Font-Size: 16px;
+Color: #Fff;
+Margin-Bottom: 30px;
+Border: None;
+Border-Bottom: 1px Solid #Fff;
+Outline: None;
+Background: Transparent;
+}
+.Login-Box .User-Box Label {
+Position: Absolute;
+Top:0;
+Left: 0;
+Padding: 10px 0;
+Font-Size: 16px;
+Color: #Fff;
+Pointer-Events: None;
+Transition: .5s;
+}
+.Login-Box .User-Box Input:focus ~ Label,
+.Login-Box .User-Box Input:valid ~ Label {
+Top: -20px;
+Left: 0;
+Color: #03e9f4;
+Font-Size: 12px;
+}
+.Login-Box Form A {
+Position: Relative;
+Display: Inline-Block;
+Padding: 10px 20px;
+Color: #03e9f4;
+Font-Size: 16px;
+Text-Decoration: None;
+Text-Transform: Uppercase;
+Overflow: Hidden;
+Transition: .5s;
+Margin-Top: 40px;
+Letter-Spacing: 4px
+}
+.Login-Box A:hover {
+Background: #03e9f4;
+Color: #Fff;
+Border-Radius: 5px;
+Box-Shadow: 0 0 5px #03e9f4,
+0 0 25px #03e9f4,
+0 0 50px #03e9f4,
+0 0 100px #03e9f4;
+}
+.Login-Box A Span {
+Position: Absolute;
+Display: Block;
+}
+.Login-Box A Span:nth-Child(1) {
+Top: 0;
+Left: -100%;
+Width: 100%;
+Height: 2px;
+Background: Linear-Gradient(90deg, Transparent, #03e9f4);
+Animation: Btn-Anim1 1s Linear Infinite;
+}
+@Keyframes Btn-Anim1 {
+0% {
+Left: -100%;
+}
+50%,100% {
+Left: 100%;
+}
+}
+.Login-Box A Span:nth-Child(2) {
+Top: -100%;
+Right: 0;
+Width: 2px;
+Height: 100%;
+Background: Linear-Gradient(180deg, Transparent, #03e9f4);
+Animation: Btn-Anim2 1s Linear Infinite;
+Animation-Delay: .25s
+}
+@Keyframes Btn-Anim2 {
+    0% {
+    Top: -100%;
+    }
+    50%,100% {
+    Top: 100%;
+    }
+    }
+    .Login-Box A Span:nth-Child(3) {
+    Bottom: 0;
+    Right: -100%;
+    Width: 100%;
+    Height: 2px;
+    Background: Linear-Gradient(270deg, Transparent, #03e9f4);
+    Animation: Btn-Anim3 1s Linear Infinite;
+    Animation-Delay: .5s
+    }
+    @Keyframes Btn-Anim3 {
+    0% {
+    Right: -100%;
+    }
+    50%,100% {
+    Right: 100%;
+    }
+    }
+    .Login-Box A Span:nth-Child(4) {
+    Bottom: -100%;
+    Left: 0;
+    Width: 2px;
+    Height: 100%;
+    Background: Linear-Gradient(360deg, Transparent, #03e9f4);
+    Animation: Btn-Anim4 1s Linear Infinite;
+    Animation-Delay: .75s
+    }
+    @Keyframes Btn-Anim4 {
+    0% {
+    Bottom: -100%;
+    }
+    50%,100% {
+    Bottom: 100%;
+    }
+    }
+
+    
+    

@@ -1,0 +1,1295 @@
+<?xml version="1.0"?>
+    2 <!DOCTYPE book PUBLIC 
+    3     "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+    4     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+    5 ]>
+    6 <!--[c]-->
+    7 <!--[c]Example - XML Docbook-->
+    8 <!--[c]-->
+    9 <!--[c] Open this file in Code Browser and use the View > Tree View-->
+   10 <!--[c] command to switch to the Smalltalk-like browsing mode.-->
+   11 <!--[c] -->
+   12 <!--[c] This is an old docbook source of the code browser documentation.-->
+   13 <!--[c] Open the file in a new tab (CTRL-T) and use the 'Tree View' -->
+   14 <!--[c] layout (it should be activated by default) to navigate into the document. -->
+   15 <!--[c] This example shows how the program can be used to outline an XML -->
+   16 <!--[c] document.-->
+   17 <!--[c]-->
+   18 <book>
+   19 <!--[of]:   bookinfo-->
+   20 <bookinfo>
+   21 
+   22     <title>Code Browser Documentation</title>
+   23     <authorgroup>
+   24         <author>
+   25             <firstname>Marc</firstname>
+   26             <surname>Kerbiquet</surname>
+   27             <affiliation>
+   28                 <address>
+   29                     <email>mkerbiquet@tibleiz.net</email>
+   30                 </address>
+   31             </affiliation>
+   32         </author>
+   33     </authorgroup>
+   34 
+   35     <copyright>
+   36         <year>2004-11</year>
+   37         <holder>Marc Kerbiquet</holder>
+   38     </copyright>
+   39 
+   40     <date>2010-09-14</date>
+   41 
+   42 <abstract>
+   43 Code Browser is a folding and outlining editor for Linux and Windows.
+   44 </abstract>
+   45     
+   46 <keywordset>
+   47     <keyword>Code</keyword>
+   48     <keyword>Browser</keyword>
+   49     <keyword>Folding</keyword>
+   50     <keyword>Outlining</keyword>
+   51     <keyword>Editor</keyword>
+   52 </keywordset>
+   53 
+   54 </bookinfo>
+   55 <!--[cf]-->
+   56 <!--[of]:   Introduction-->
+   57 <preface>
+   58 <title>Introduction</title>
+   59 
+   60 <para>Code Browser is a text editor that allows you to structure your 
+   61 source code like an hyper-text document: 
+   62 the source code can be cut into pages independently of
+   63 the file structure. A page can be referenced using links or can be nested 
+   64 into another page. It gives a better visibilty on large projects and makes
+   65 navigation easier.</para>
+   66 
+   67 <para>For a quick start, open <filename>samples/tutorial.txt</filename>
+   68 with the application.</para>
+   69 
+   70 <!--[of]:Principle-->
+   71 <section>
+   72 <title>Principle</title>
+   73 
+   74 <para>Special directives are inserted in the source code as comments.
+   75 The file saved on disk is completely compatible with any
+   76 programming language having comments (single or multi-lines). It does not
+   77 require any transformation before processing.</para>
+   78 
+   79 </section>
+   80 <!--[cf]-->
+   81 <!--[of]:Relative Indentation-->
+   82 <section>
+   83 <title>Relative indentation</title>
+   84 
+   85 <para>Code Browser can fold a text file in two ways:  with absolute indentation or
+   86 with relative indentation. The mode can be defined independently for each configuration.
+   87 Here is two examples:
+   88 </para>
+   89 
+   90 <itemizedlist>
+   91 <listitem>Absolute indentation
+   92 <programlisting>
+   93 line1
+   94     line2
+   95 //[of]:    This is a folder
+   96     line3
+   97     line4
+   98 //[cf]
+   99 </programlisting></listitem>
+  100 
+  101 <listitem>Relative indentation
+  102 <programlisting>
+  103 line1
+  104     line2
+  105     //[of]:This is a folder
+  106     line3
+  107     line4
+  108     //[cf]
+  109 </programlisting></listitem>
+  110 </itemizedlist>
+  111 
+  112 <para>In both cases the header is indented, but when you edit the content 
+  113 of the first folder, the text is also indented, whereas in the second one the 
+  114 text will start at column 1.</para>
+  115 
+  116 <para>By default, absolute indentation is used.</para>
+  117 
+  118 <para>The relative indentation is useful for indentation sensitive syntaxes 
+  119 such as Python:
+  120 when editing the content of a sub-folder, you don't have to care about
+  121 indentation, just indent or unindent its header to update its real indentation.
+  122 </para>
+  123 
+  124 <para>The relative indentation is auto-detected when loading a file (the tags
+  125 are indented), so anybody can open it and read it with the same indentation 
+  126 wihtout having to change their settings.</para>
+  127     
+  128 </section>
+  129 <!--[cf]-->
+  130 
+  131 </preface>
+  132 <!--[cf]-->
+  133 <!--[of]:   Concepts-->
+  134 <chapter>
+  135 <title>Concepts</title>
+  136 
+  137 <!--[of]:Files and Windows-->
+  138 <section>
+  139 <title>Files and Windows</title>
+  140 
+  141 <para>The application supports two independent features:
+  142 <itemizedlist>
+  143 <listitem>multiple files</listitem>
+  144 <listitem>multiple windows</listitem>
+  145 </itemizedlist>
+  146 A loaded file can be displayed in zero, one or more windows.</para>
+  147 
+  148 <para>Usually, a text editor has only one window per file.
+  149 When you want to open a file that is already opened, it just brings 
+  150 its window to front. With Code Browser, a file is loaded only 
+  151 once but several windows can be opened on it.</para>
+  152 <!--[c]-->
+  153 <simplesect>
+  154 <title>Opening a File</title>
+  155 <para>The <guimenuitem>Open</guimenuitem> command from the 
+  156 <guimenu>File</guimenu> menu opens a file in a new window. 
+  157 If this file is already loaded, it is not reloaded.</para>
+  158 </simplesect>
+  159 <!--[c]-->
+  160 <simplesect>
+  161 <title>Viewing Loaded Files</title>
+  162 <para>The <guimenuitem>Files</guimenuitem> command from the 
+  163 <guimenu>File</guimenu> menu shows all loaded files 
+  164 and allows to open or re-open a file in a new window.</para>
+  165 </simplesect>
+  166 <!--[c]-->
+  167 <simplesect>
+  168 <title>Closing a Window</title>
+  169 <para>Use the <guimenuitem>Close</guimenuitem> command from the 
+  170 <guimenuitem>Window</guimenuitem> menu to close the active window.
+  171 This command does not unload any file. That's why it never asks for
+  172 save confirmation. Confirmations occur only when exiting.</para>
+  173 </simplesect>
+  174 <!--[c]-->
+  175 <simplesect>
+  176 <title>Cloning a Window</title>
+  177 <para>Use the <guimenuitem>Clone</guimenuitem> command from the 
+  178 <guimenuitem>Window</guimenuitem> menu to create an exact copy of
+  179 the active window: the new window will have the same layouts that display
+  180 the same folders in panes.</para>
+  181 </simplesect>
+  182 <!--[c]-->
+  183 <simplesect>
+  184 <title>Reloading a File</title>
+  185 <para>A file can be reloaded when it is modified by another application.
+  186 The <code>reload.mode</code> in options can change the behavior when
+  187 an external file change is detected:
+  188 <itemizedlist>
+  189 <listitem><code>never</code>: never reload</listitem>
+  190 <listitem><code>ask</code>: ask before reload</listitem>
+  191 <listitem><code>always</code>: reload without asking unless the file is modified</listitem>
+  192 </itemizedlist>
+  193 Sometimes some windows could unexpectedly disapear while reloading. 
+  194 But don't worry, the file has been reloaded and you can re-open a window 
+  195 on it with the 
+  196 <guimenuitem>Files...</guimenuitem> command from the 
+  197 <guimenuitem>File</guimenuitem> menu.
+  198 It happens only with windows displaying sub-folders and where changes occured
+  199 on a parent folder.
+  200 </para>
+  201 </simplesect>
+  202 
+  203 </section>
+  204 <!--[cf]-->
+  205 <!--[of]:Folders and Links-->
+  206 <section>
+  207 <title>Folders and Links</title>
+  208 
+  209 <!--[of]:Folders-->
+  210 <section>
+  211 <title>Folders</title>
+  212 
+  213 <para>A folder is a group of lines collapsed into one single line.
+  214 A folder can include sub-folders. By default, folder lines are
+  215 displayed in blue. Folders can be used only with a 
+  216 language having a comment directive.</para>
+  217 <!--[c]-->
+  218 <simplesect>
+  219 <title>Inserting a New Folder</title>
+  220  
+  221 <para>The <guimenuitem>Folder</guimenuitem> command from the
+  222 <guimenu>Insert</guimenu> menu opens the folder creation dialog.
+  223 Enter a name and an identifier. 
+  224 Use <code>\t</code> to put tabs in the name.
+  225 The identifier is needed only if you want to reference this folder 
+  226 (i.e. creating a link to it).</para>
+  227 
+  228 <para>Any text selected before is moved into the newly created folder. 
+  229 This feature helps to structure an existing flat file.</para>
+  230 </simplesect>
+  231 <!--[c]-->
+  232 <simplesect>
+  233 <title>Editing Folder Properties</title>
+  234 
+  235 <para>When the caret is on a folder, you can use the
+  236 <guimenuitem>Properties</guimenuitem> command from the
+  237 <guimenu>Edit</guimenu> menu to modify its name and identifier.</para>
+  238 
+  239 <para>The command is also available from the contextual menu.</para>
+  240 </simplesect>
+  241 <!--[c]-->
+  242 <simplesect>
+  243 <title>Entering into a Folder</title>
+  244 
+  245 <para>When the caret is on a folder, you can use the
+  246 <guimenuitem>Enter</guimenuitem> command (<code>ALT-Right</code>) 
+  247 from the <guimenu>Go</guimenu> menu 
+  248 to edit its content.</para>
+  249 
+  250 <para>This command is also available by double-clicking on the line.</para>
+  251 </simplesect>
+  252 <!--[c]-->
+  253 <simplesect>
+  254 <title>Leaving a Folder</title>
+  255 
+  256 <para>To go back to the previous folder, use the 
+  257 <guimenuitem>Back</guimenuitem> command (<code>ALT-Left</code>)
+  258 from the <guimenu>Go</guimenu> menu.</para>
+  259 </simplesect>
+  260 <!--[c]-->
+  261 </section>
+  262 <!--[cf]-->
+  263 <!--[of]:Links-->
+  264 <section>
+  265 <title>Links</title>
+  266 
+  267 <para>A link is a reference to a folder either in the same file or in an 
+  268 other file. This concept is similar to links in HTML documents. It can be 
+  269 useful to add links to related items (related functions, definitions of 
+  270 classes, ...).</para>
+  271 
+  272 <para>A link is similar to a folder: the <guimenuitem>Enter</guimenuitem> 
+  273 command follows the link instead of opening a folder.
+  274 Properties are edited in the same way.</para>
+  275 
+  276 <para>By default, link lines are displayed in green.</para>
+  277 
+  278 <para>The syntax for the path is:
+  279 <programlisting>
+  280 &lt;filename&gt;[#&lt;folder-path&gt;]
+  281 </programlisting></para>
+  282 
+  283 <para>Where <code>&lt;filename&gt;</code> is the filename with path relative 
+  284 to the current file. The path separators are '/' even on Windows platform, 
+  285 not '\' in order to have platform independent files. 
+  286 <code>&lt;folder-path&gt;</code> is optional, it is the path in the file to reach 
+  287 the target folder. The path separators are also '/' between folders.</para>
+  288 
+  289 </section>
+  290 <!--[cf]-->
+  291 <!--[of]:Special Links-->
+  292 <section>
+  293 <title>Special Links</title>
+  294 
+  295 <para>It is possible to create special links pointing to a line identified by a line number
+  296 or a regular expression.</para>
+  297 
+  298 <para>Link to a line in a folder:
+  299 <programlisting>
+  300 &lt;filename&gt;[#&lt;folder-path&gt;]?ln=&lt;line-number&gt;
+  301 </programlisting></para>
+  302 
+  303 <para>Link to a line in a file:
+  304 <programlisting>
+  305 &lt;filename&gt;?aln=&lt;line-number&gt;
+  306 </programlisting></para>
+  307 
+  308 <para>Link to the first line matching a regular expression:
+  309 <programlisting>
+  310 &lt;filename&gt;[#&lt;folder-path&gt;]?s=&lt;regular-expression&gt;
+  311 </programlisting>
+  312 or case insensitive:
+  313 <programlisting>
+  314 &lt;filename&gt;[#&lt;folder-path&gt;]?is=&lt;regular-expression&gt;
+  315 </programlisting>
+  316 </para>
+  317 
+  318 </section>
+  319 <!--[cf]-->
+  320 <!--[of]:Note-->
+  321 <note>
+  322 <title>Reminder</title>
+  323 <itemizedlist>
+  324 <listitem>A folder (blue) owns its content</listitem>
+  325 <listitem>A link (green) is a reference to a remote folder</listitem>
+  326 </itemizedlist>
+  327 In short: deleting a blue line deletes the content, deleting the green line
+  328 has no effect on the source code.
+  329 </note>
+  330 <!--[cf]-->
+  331 
+  332 </section>
+  333 <!--[cf]-->
+  334 <!--[of]:Layouts-->
+  335 <section>
+  336 <title>Layouts</title>
+  337 
+  338 <para>Each window can show one or more panes: each one
+  339 displays the content of the folder or link selected by its predecessor.
+  340 The layout of the active window can be changed using the 
+  341 <guimenu>View</guimenu> menu.</para>
+  342 
+  343 <para>There are four different layouts.</para>
+  344 
+  345 <simplesect>
+  346 <title>Simple View</title>
+  347 <para>Display only one folder. This is the default mode.</para>
+  348 </simplesect>
+  349 
+  350 <simplesect>
+  351 <title>Browser View</title>
+  352 <para>Each ancestor of the current folder is displayed in a flat list above the text.</para>
+  353 </simplesect>
+  354 
+  355 <simplesect>
+  356 <title>Tree View</title>
+  357 <para>Display one folder and a tree view of the file. Sub-folders can
+  358 be reached directly with this tree. Links are also expanded in the tree.
+  359 </para>
+  360 </simplesect>
+  361 
+  362 <simplesect>
+  363 <title>Page View</title>
+  364 <para>With this layout, each sub-folder is displayed at the right of its parent. 
+  365 Three folders are visibles and the view is scrolled with an animation when
+  366 changing level.</para>
+  367 </simplesect>
+  368 
+  369 <simplesect>
+  370 <title>Customizing the default layout</title>
+  371 <para>The layout can be customized for each configuration. So it is possible to
+  372 open a file in a new window with a layout depending on the file type.
+  373 See the preferences file for more information.</para>
+  374 </simplesect>
+  375 
+  376 </section>
+  377 <!--[cf]-->
+  378 <!--[of]:Undo - Redo-->
+  379 <section>
+  380 <title>Undo - Redo</title>
+  381 
+  382 <para>There is an unlimited undo stack for each loaded file.</para>
+  383 
+  384 <para>You must be careful since a window can display several files
+  385 and several windows can display the same file: <guimenuitem>undo</guimenuitem> may cancel a 
+  386 change made in another window if the focus is in the wrong pane.
+  387 Anyway an <guimenuitem>undo</guimenuitem> operation can always be undone with 
+  388 the <guimenuitem>redo</guimenuitem> command.</para>
+  389 
+  390 </section>
+  391 <!--[cf]-->
+  392 <!--[of]:Find and Replace-->
+  393 <section>
+  394 <title>Find and Replace</title>
+  395 
+  396 <para>Code Browser has two types of search and replace: iterative and global.
+  397 The global one searches all occurrences of a string and displays a list of links
+  398 to matching lines. The two modes does not support same features:</para>
+  399 
+  400 <simplesect>
+  401 <title>Iterative Search/Replace (<code>CTRL-F</code>, <code>CTRL-R</code>)</title>
+  402 <itemizedlist>
+  403 <listitem>Cannot find text in headlines</listitem>
+  404 <listitem>Cannot follow links</listitem>
+  405 <listitem>Cannot search in sub-folders if scope is current folder</listitem>
+  406 </itemizedlist>
+  407 </simplesect>
+  408 
+  409 <simplesect>
+  410 <title>Global Search/Replace (<code>CTRL-H</code>, <code>CTRL-SHIFT-R</code>)</title>
+  411 <itemizedlist>
+  412 <listitem>Can find text in headlines</listitem>
+  413 <listitem>Can follow links</listitem>
+  414 <listitem>Can search in sub-folders</listitem>
+  415 <listitem>Can search in current selection</listitem>
+  416 <listitem>Can search in multiple files</listitem>
+  417 </itemizedlist>
+  418 </simplesect>
+  419 
+  420 <note>For convenience, there is a 'Replace All' accessible from the iterative 
+  421 replace dialog. But consider using the global replace instead because it reports
+  422 modified lines.</note>
+  423 
+  424 <note>In this application, the term 'folder' means folded sections inside text files, so to
+  425 avoid confusions with folders on disks, the 'directory' term will be used to refer to disk
+  426 folders</note>
+  427 
+  428 <simplesect>
+  429 <title>Regular Expressions</title>
+  430 Regular expressions can be used to search and replace complex expressions. 
+  431 
+  432 <para>
+  433 <table>
+  434 <title>Special character in search pattern</title>
+  435 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+  436 
+  437 <thead>
+  438 <row>
+  439 <entry>Expression</entry>
+  440 <entry>Description</entry>
+  441 </row>
+  442 </thead>
+  443 
+  444 <tbody>
+  445 
+  446 <row><entry>.</entry>
+  447 <entry>Matches any single character except newline</entry></row>
+  448 
+  449 <row><entry>^</entry>
+  450 <entry>Matches the beginning of line if it is the first character of the search pattern</entry></row>
+  451 
+  452 <row><entry>$</entry>
+  453 <entry>Matches the end of line if it is the last character of the search pattern</entry></row>
+  454 
+  455 <row><entry>?</entry>
+  456 <entry>Matches the preceding character or group zero or one time</entry></row>
+  457 
+  458 <row><entry>*</entry>
+  459 <entry>Matches the preceding character or group zero or more times</entry></row>
+  460 
+  461 <row><entry>+</entry>
+  462 <entry>Matches the preceding character or group one or more times</entry></row>
+  463 
+  464 <row><entry>( )</entry>
+  465 <entry>Group. Used to reuse the matched expression in the replace pattern or
+  466 to repeat a pattern using ?, * or +</entry></row>
+  467 
+  468 <row><entry>[ ]</entry>
+  469 <entry>
+  470 <para>Matches a set of characters. The expression between bracket is a list 
+  471 of characters and range of character. A range of character is defined using the 
+  472 '-'. Example: <code>[a-zA-Z_]</code> matches any alphabetic character and 
+  473 the underscore.</para>
+  474 <para>If the first character in the list is a '^', the expression matches all 
+  475 characters except the set of characters.</para></entry></row>
+  476 
+  477 <row><entry>\t</entry>
+  478 <entry>Matches the tab character</entry></row>
+  479 
+  480 <row><entry>\</entry>
+  481 <entry>Matches the character following the backslash: the next character will 
+  482 not be considered as a special character. Useful to match ., ^, $, ?, *, +, [, ], 
+  483 (, ) or \.</entry></row>
+  484 
+  485 </tbody>
+  486 </tgroup>
+  487 </table>
+  488 </para>
+  489 
+  490 <para>
+  491 <table>
+  492 <title>Special character in replace pattern</title>
+  493 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+  494 
+  495 <thead>
+  496 <row>
+  497 <entry>Expression</entry>
+  498 <entry>Description</entry>
+  499 </row>
+  500 </thead>
+  501 
+  502 <tbody>
+  503 
+  504 <row><entry>\\</entry>
+  505 <entry>Inserts a backslash.</entry></row>
+  506 
+  507 <row><entry>\1-9</entry>
+  508 <entry>Inserts the corresponding group.</entry></row>
+  509 
+  510 </tbody>
+  511 </tgroup>
+  512 </table>
+  513 </para>
+  514 
+  515 
+  516 </simplesect>
+  517 
+  518 </section>
+  519 <!--[cf]-->
+  520 <!--[of]:Copy and Paste-->
+  521 <section>
+  522 <title>Copy and Paste</title>
+  523 
+  524 <para>Copying and pasting text works almost like any other text editors with few differences due 
+  525 to the folding system.</para>
+  526 
+  527 <simplesect>
+  528 <title>Copying as Reference</title>
+  529 <para>This is a special copy: the location of the current folder is copied 
+  530 instead of the selection. This command works only at the toplevel of
+  531 a file or in a subfolder if all parent folders have a name.</para>
+  532 <para>When the location is pasted in a text file edited in Code Browser,
+  533 a link to this location is inserted. The link uses a relative path when 
+  534 possible.</para>
+  535 </simplesect>
+  536 
+  537 <simplesect>
+  538 <title>Pasting Raw Text</title>
+  539 <para>A text copied from Code Browser is pasted with all folders unfolded 
+  540 and the headlines inserted as comments according to the language of the
+  541 target file.</para>
+  542 </simplesect>
+  543 
+  544 </section>
+  545 <!--[cf]-->
+  546 
+  547 </chapter>
+  548 <!--[cf]-->
+  549 <!--[of]:   Customization-->
+  550 <chapter>
+  551 <title>Customization</title>
+  552 
+  553 <para>Use the <guimenuitem>Options</guimenuitem> command from the 
+  554 <guimenu>Tools</guimenu> menu to edit the user preferences.</para>
+  555 
+  556 <!--[of]:Files-->
+  557 <section>
+  558 <title>Files</title>
+  559 
+  560 <para>The editor loads first all configuration files in the <filename>config</filename>
+  561 global directory, then it loads all configuration files in the <filename>config</filename>
+  562 user directory, and finally it will load an optional configuration file specified using
+  563 the <code>-c</code> command line option.</para>
+  564 
+  565 
+  566 <simplesect>
+  567 <title>On Unix platform</title>
+  568 <itemizedlist>
+  569 <listitem>the global directory is (by default): <filename>/usr/local/share/code-browser-3</filename></listitem>
+  570 <listitem>the user directory is: <filename>$(HOME)/.code-browser-3</filename></listitem>
+  571 </itemizedlist>
+  572 </simplesect>
+  573 
+  574 <simplesect>
+  575 <title>On Windows platform</title>
+  576 <itemizedlist>
+  577 <listitem>the global directory is the directory of the executable</listitem>
+  578 <listitem>the user directory is: <filename>"\Documents and Settings\<replaceable>CurrentUser</replaceable>\Application Data\code-browser"</filename></listitem>
+  579 </itemizedlist>
+  580 </simplesect>
+  581 
+  582 <para>The configuration files are merged into one document before being processed.
+  583 They all have the same syntax.</para>
+  584 
+  585 <para>The files in the global directory contain original settings that will
+  586 be overriden when upgrading, so you should not modify them.</para>
+  587 
+  588 <para>The <filename>config-default</filename> directory contains the default user 
+  589 configuration file. This file will be automatically copied into the user directory
+  590 on the first access to the options from the <code>Tools/Options...</code> menu.
+  591 All properties are commented out, this prevent overriding the settings defined
+  592 in the global preference file. Just uncomment properties you want to modify and
+  593 and change their values.</para>
+  594 
+  595 <para>The <filename>config-optional</filename> directory contains
+  596 optional configuration files that are not activated by default. To use them, 
+  597 just copy them into the user or global <filename>config</filename> directory.
+  598 </para>
+  599 
+  600 <para>The file specified in command line (<code>-c</code>) is typically used 
+  601 for project specific customizations. such as user tools to compile and run a specific 
+  602 project.</para>
+  603 
+  604 </section>
+  605 <!--[cf]-->
+  606 <!--[of]:General Syntax-->
+  607 <section>
+  608 <title>General Syntax</title>
+  609 
+  610 <para>A configuration file is just a sequence of properties and elements.
+  611 </para>
+  612 
+  613 <para>A property name starts with a letter and can contain letters, digits and 
+  614 dashes (-).
+  615 <programlisting>
+  616 property = value
+  617 </programlisting>
+  618 <itemizedlist>
+  619 <listitem>Blanks preceding and following the value are ignored.</listitem>
+  620 <listitem>% is a special character in values.</listitem>
+  621 <listitem>Use %% to get a %.</listitem>
+  622 <listitem>Use %_ to get a whitespace.</listitem>
+  623 </itemizedlist>
+  624 </para>
+  625 
+  626 <para>
+  627 <table>
+  628 <title>Special sequences in property values</title>
+  629 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+  630 
+  631 <thead>
+  632 <row>
+  633 <entry>Expression</entry>
+  634 <entry>Description</entry>
+  635 </row>
+  636 </thead>
+  637 
+  638 <tbody>
+  639 
+  640 <row><entry>%_</entry>
+  641 <entry>Whitespace</entry></row>
+  642 
+  643 <row><entry>%%</entry>
+  644 <entry>%</entry></row>
+  645 
+  646 <row><entry>%(path.prop)</entry>
+  647 <entry>Replaced by the value of the property found at the absolute path</entry></row>
+  648 
+  649 <row><entry>%(.path.prop)</entry>
+  650 <entry>Replaced by the value of the property found at the relative path</entry></row>
+  651 
+  652 <row><entry>%(prop)</entry>
+  653 <entry>Replaced by the value of the property found at the root level</entry></row>
+  654 
+  655 <row><entry>%(.prop)</entry>
+  656 <entry>Replaced by the value of the property found at the current level</entry></row>
+  657 
+  658 </tbody>
+  659 </tgroup>
+  660 </table>
+  661 The parenthesis are not required and can be omitted when there is no ambiguity.
+  662 </para>
+  663 
+  664 <para>An element is a named object containing properties and other elements.
+  665 <programlisting>
+  666 def name
+  667     ...
+  668 end
+  669 </programlisting>
+  670 The name has the same restrictions as property names.
+  671 </para>
+  672 
+  673 <para>An element can contain a special property '<code>prototype</code>' 
+  674 that references another element. If this property is set, this element 
+  675 inherits all properties of the specified target element.
+  676 </para>
+  677 
+  678 <para>A property can overwrite directly an existing value in a sub-element:
+  679 <programlisting>
+  680 sub-elem-1.sub-elem-2.property = value
+  681 </programlisting>
+  682 </para>
+  683 
+  684 <para>
+  685 A configuration file is not restricted to properties recognized by the editor, you can define
+  686 your own and reuse them at different places.
+  687 </para>
+  688 
+  689 <para>The preferences have access to the following builtin properties:
+  690 There is builtin properties accessible in <filename>preferences.cbc</filename>.
+  691 These properties are used to define the system color themes but you can use them.
+  692 </para>
+  693 
+  694 <table>
+  695 <title>Builtin properties in preferences.cbc</title>
+  696 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+  697 
+  698 <thead>
+  699 <row>
+  700 <entry>Name</entry>
+  701 <entry>Description</entry>
+  702 </row>
+  703 </thead>
+  704 
+  705 <tbody>
+  706 
+  707 <row><entry>p</entry>
+  708 <entry>The current platform (<code>win32</code> or <code>x11</code>)</entry></row>
+  709 
+  710 <row><entry>system.back-color</entry><entry>The system background color of text</entry></row>
+  711 <row><entry>system.medium-color</entry><entry>An intermediary color between the background color and window color</entry></row>
+  712 <row><entry>system.fore-color</entry><entry>The system foreground color of text</entry></row>
+  713 <row><entry>system.inactive-back-color</entry><entry>The background color for selected objects when inactive</entry></row>
+  714 <row><entry>system.highlight-back-color</entry><entry>The background color for selected objects</entry></row>
+  715 <row><entry>system.highlight-fore-color</entry><entry>The foreground color for selected objects</entry></row>
+  716 
+  717 </tbody>
+  718 </tgroup>
+  719 </table>
+  720 
+  721 </section>
+  722 <!--[cf]-->
+  723 <!--[of]:Edit Configurations-->
+  724 <section>
+  725 <title>Edit Configurations</title>
+  726 
+  727 <para>A configuration determines how to display and edit a file
+  728 given its extension or its first line.</para>
+  729 
+  730 <para>Each configuration is defined as follow:</para>
+  731 <programlisting>
+  732 def <replaceable>name</replaceable>
+  733   patterns = <replaceable>pattern1</replaceable> [; <replaceable>pattern2</replaceable> ...]
+  734   first-line-patterns = <replaceable>pattern1</replaceable> [; <replaceable>pattern2</replaceable> ...]
+  735   language = <replaceable>language</replaceable>
+  736   display = <replaceable>display-scheme</replaceable>
+  737   layout = (single|tree|list|page)
+  738   tree-view = (true|false)
+  739   relative-indentation = (true|false)
+  740   auto-indentation = (true|false)
+  741   expand-tabulation = (true|false)
+  742   tabulation-size = <replaceable>size</replaceable>
+  743   word-wrap = (true|false)
+  744 end
+  745 </programlisting>
+  746 
+  747 <variablelist>
+  748 
+  749 <varlistentry><term>patterns</term>
+  750 <listitem>The list of extension separated by a ';'. If this attribute is 
+  751 missing, and there is no 'first.line.patterns' attribute, this configuration
+  752 is used as the default one.</listitem>
+  753 </varlistentry>
+  754 
+  755 <varlistentry><term>first-line-patterns</term>
+  756 <listitem>The list of matching first lines separated by a ';'.
+  757   Wildcards '*' are accepted.</listitem>
+  758 </varlistentry>
+  759 
+  760 <varlistentry><term>language</term>
+  761 <listitem>The language used to structure and colorize the text.</listitem>
+  762 </varlistentry>
+  763 
+  764 <varlistentry><term>display</term>
+  765 <listitem>The display scheme (defines colors and fonts).</listitem>
+  766 </varlistentry>
+  767 
+  768 <varlistentry><term>layout</term>
+  769 <listitem>If specified, it overrides the property defined in the general section.</listitem>
+  770 </varlistentry>
+  771 
+  772 <varlistentry><term>tree-view</term>
+  773 <listitem>If specified, override the property define in the general section.</listitem>
+  774 </varlistentry>
+  775 
+  776 <varlistentry><term>relative-indentation</term>
+  777 <listitem>If true, each folder will be indented with the indentation of its headline.
+  778 <para>Remark: this option has no effect on a file already opened, you must exit and restart.</para>
+  779 <para>Warning: use this option carefully, once a file is saved with relative indentation, it cannot be undone easily.</para>
+  780 </listitem>
+  781 </varlistentry>
+  782 
+  783 <varlistentry><term>auto-indentation</term>
+  784 <listitem>Turns on auto-indentation.</listitem>
+  785 </varlistentry>
+  786 
+  787 <varlistentry><term>expand-tabulation</term>
+  788 <listitem>A tabulation is replaced by whitespaces.</listitem>
+  789 </varlistentry>
+  790 
+  791 <varlistentry><term>tabulation-size</term>
+  792 <listitem>Size of tabulations.</listitem>
+  793 </varlistentry>
+  794 
+  795 <varlistentry><term>word-wrap</term>
+  796 <listitem>Turns on the word wrapping.</listitem>
+  797 </varlistentry>
+  798 
+  799 </variablelist>
+  800 
+  801 </section>
+  802 <!--[cf]-->
+  803 <!--[of]:User Tools-->
+  804 <section>
+  805 <title>User Tools</title>
+  806 
+  807 <para>Customized tools can be launched from the 'Tools' menu.
+  808 To add new tools, edit the 'tools' section from the options.</para>
+  809 
+  810 <!--[of]:Syntax-->
+  811 <simplesect>
+  812 <title>Syntax</title>
+  813 
+  814 <programlisting>
+  815 def <replaceable>name</replaceable>
+  816   caption = <replaceable>caption</replaceable>
+  817   command = <replaceable>command name</replaceable>
+  818   arguments = <replaceable>list of arguments</replaceable>
+  819   directory = <replaceable>initial directory</replaceable>
+  820   save-all = (true|false)
+  821   save-current = (true|false)
+  822   show-window = (true|false)
+  823   language = <replaceable>language definition</replaceable>
+  824   layout = (single|tree|list|page)
+  825   hot-key = <replaceable>key</replaceable>
+  826   auto-close = (true|false)
+  827   edit-arguments = (true|false)
+  828   error-pattern-1 = <replaceable>regex</replaceable>
+  829   error-pattern-2 = <replaceable>regex</replaceable>
+  830   error-pattern-3 = <replaceable>regex</replaceable>
+  831   error-pattern-4 = <replaceable>regex</replaceable>
+  832   error-pattern-5 = <replaceable>regex</replaceable>
+  833   error-pattern-6 = <replaceable>regex</replaceable>
+  834   error-pattern-7 = <replaceable>regex</replaceable>
+  835   error-pattern-8 = <replaceable>regex</replaceable>
+  836   error-pattern-9 = <replaceable>regex</replaceable>
+  837 end
+  838 </programlisting>
+  839 
+  840 <para>The name identifies the tool but it is not used yet.</para>
+  841 
+  842 <variablelist>
+  843 
+  844 <varlistentry><term>caption</term>
+  845 <listitem>
+  846 This text will be displayed in the <code>Tools</code> menu and in the title of
+  847 the output window.
+  848 </listitem>
+  849 </varlistentry>
+  850 
+  851 <varlistentry><term>command</term>
+  852 <listitem>
+  853 The full name of the command to execute. Blanks are accepted,
+  854 no need to use quotes.
+  855 </listitem>
+  856 </varlistentry>
+  857 
+  858 <varlistentry><term>arguments</term>
+  859 <listitem>
+  860 The arguments to pass to the command. This attribute accepts special
+  861 variables that will be substitute when launching the command. The syntax
+  862 is <code>$(variablename)</code> where 'variablename' must be one of:
+  863 <table>
+  864 <title>Variables in Arguments</title>
+  865 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+  866 
+  867 <thead>
+  868 <row>
+  869 <entry>Name</entry>
+  870 <entry>Description</entry>
+  871 </row>
+  872 </thead>
+  873 
+  874 <tbody>
+  875 
+  876 <row>
+  877 <entry>FilePath</entry>
+  878 <entry>The full name of the current file</entry>
+  879 </row>
+  880 
+  881 <row>
+  882 <entry>FileDir</entry>
+  883 <entry>The directory of the current file</entry>
+  884 </row>
+  885 
+  886 <row>
+  887 <entry>FileName</entry>
+  888 <entry>The filename without directory and without extension</entry>
+  889 </row>
+  890 
+  891 <row>
+  892 <entry>FileNameExt</entry>
+  893 <entry>The filename with extension but without directory</entry>
+  894 </row>
+  895 
+  896 <row>
+  897 <entry>CurText</entry>
+  898 <entry>The current selection or the word under the caret.
+  899 This value will be empty if the selection contains new lines.</entry>
+  900 </row>
+  901 
+  902 <row>
+  903 <entry>CurLine</entry>
+  904 <entry>The current line of the caret. This value is an absolute line
+  905 number i.e. starting from the beginning of the file, not the folder.</entry>
+  906 </row>
+  907 
+  908 <row>
+  909 <entry>CurCol</entry>
+  910 <entry>The current column of the caret. This value is an offset,
+  911 tab characters are not expanded.</entry>
+  912 </row>
+  913 
+  914 </tbody>
+  915 </tgroup>
+  916 </table>
+  917 
+  918 </listitem>
+  919 </varlistentry>
+  920 
+  921 <varlistentry><term>directory</term>
+  922 <listitem>
+  923 The directory where you want the command to execute. This attribute accepts the
+  924 same variables as the <code>arguments</code> attribute.
+  925 </listitem>
+  926 </varlistentry>
+  927 
+  928 <varlistentry><term>save-all</term>
+  929 <listitem>
+  930 If true, all files are saved before launching the command. The command will not
+  931 be launched if at least one save fails.
+  932 </listitem>
+  933 </varlistentry>
+  934 
+  935 <varlistentry><term>save-current</term>
+  936 <listitem>
+  937 If true, the current file is saved before launching the command. The command
+  938 will not be launched if the save fails.
+  939 </listitem>
+  940 </varlistentry>
+  941 
+  942 <varlistentry><term>show-window</term>
+  943 <listitem>
+  944 Set this attribute to true for graphical tools, set it to false to the
+  945 other to prevent the opening of a console. This attribute is unused on 
+  946 Linux platform.
+  947 </listitem>
+  948 </varlistentry>
+  949 
+  950 <varlistentry><term>language</term>
+  951 <listitem>
+  952 If this value is set, the output is parsed using the specified language definition.
+  953 So it is possible to have tools that generate structured output (including sub-folders
+  954 and links). In such a case, the entire output is buffered until the process terminates.
+  955 
+  956 <para>The output does not have a filename, so links must have a full name to
+  957 locate target files.</para>
+  958 </listitem>
+  959 </varlistentry>
+  960 
+  961 <varlistentry><term>layout</term>
+  962 <listitem>
+  963 The layout to use with the output window when launching this tool.
+  964 By default, two panes tiled vertically are opened.
+  965 </listitem>
+  966 </varlistentry>
+  967 
+  968 <varlistentry><term>hot-key</term>
+  969 <listitem>
+  970 An optional key to launch quickly the tool. The syntax is:
+  971 <para><code>[CTRL+][ALT+][SHIFT+] keyname</code></para>
+  972 </listitem>
+  973 </varlistentry>
+  974 
+  975 <varlistentry><term>auto-close</term>
+  976 <listitem>
+  977 If true, the output window will be closed if the tool terminates without error
+  978 (i.e. exit code = 0) and does not report any link.
+  979 </listitem>
+  980 </varlistentry>
+  981 
+  982 <varlistentry><term>edit-arguments</term>
+  983 <listitem>
+  984 If true, the you will be prompted for arguments.
+  985 </listitem>
+  986 </varlistentry>
+  987 <!--[c]-->
+  988 <varlistentry><term>error-pattern-<replaceable>n</replaceable></term>
+  989 <listitem>
+  990 A special regular expression to define a custom error pattern: if a line
+  991 from the output matches the pattern, it will be recognized as
+  992 an error message, the output line will be converted into a link
+  993 and the target line will be marked as an error.
+  994 
+  995 <para>
+  996 The pattern is a regex with the following rules:
+  997 <itemizedlist>
+  998 <listitem><code>\F</code> matches the filename. The filename can be relative to the initial directory (the <code>directory</code> property) or absolute.</listitem>
+  999 <listitem><code>\L</code> matches the line number.</listitem>
+ 1000 <listitem>The regular expression must not include any group, remember that parenthesis must be escaped with backslashes: <code>\( \)</code>.</listitem>
+ 1001 </itemizedlist>
+ 1002 </para>
+ 1003 
+ 1004 <para>
+ 1005 Example: an errors such as
+ 1006 <programlisting>
+ 1007 c:\myproj\src\main.c(15): Error: 'myvar' undefined
+ 1008 </programlisting>
+ 1009 will be reconized with a pattern like this: <code>\F\(\L\): .*</code>
+ 1010 </para>
+ 1011 
+ 1012 </listitem>
+ 1013 </varlistentry>
+ 1014 <!--[c]-->
+ 1015 </variablelist>
+ 1016 
+ 1017 </simplesect>
+ 1018 <!--[cf]-->
+ 1019 <!--[of]:Handling Output-->
+ 1020 <simplesect>
+ 1021 <title>Handling Output</title>
+ 1022 <para>
+ 1023 
+ 1024 When a tool is run, its output is parsed. If a line is recognized as 
+ 1025 an error or warning message, it will appear in the output window as a link.
+ 1026 By default, the editor recognizes two patterns:
+ 1027 <programlisting>
+ 1028 <replaceable>filename</replaceable>:<replaceable>line</replaceable>:<replaceable>message</replaceable>
+ 1029 <replaceable>filename</replaceable>(<replaceable>line</replaceable>):<replaceable>message</replaceable>
+ 1030 </programlisting>
+ 1031 but it can be customized with the <code>error-pattern</code> properties.
+ 1032 </para>
+ 1033 
+ 1034 <para>
+ 1035 If the file is not an absolute path, the directory specified in tool is used.
+ 1036 If there is no directory specified, the current working directory of the 
+ 1037 editor is used instead.
+ 1038 </para>
+ 1039 
+ 1040 </simplesect>
+ 1041 <!--[cf]-->
+ 1042 <!--[of]:Examples-->
+ 1043 <simplesect>
+ 1044 <title>Examples</title>
+ 1045 <programlisting>
+ 1046 def tools
+ 1047 
+ 1048     def build-cb
+ 1049         caption = Build Code Browser
+ 1050         command = cmd.exe
+ 1051         arguments = /c build.bat
+ 1052         directory = c:\projects\code-browser
+ 1053         save-all = true
+ 1054         hot-key = F7
+ 1055     end
+ 1056 
+ 1057     def run-cb
+ 1058         caption = Run Code Browser
+ 1059         command = cb.exe
+ 1060         directory = c:\projects\code-browser
+ 1061         show-window = true
+ 1062         hot-key = F5
+ 1063     end
+ 1064 
+ 1065 end
+ 1066 </programlisting>
+ 1067 </simplesect>
+ 1068 <!--[cf]-->
+ 1069 
+ 1070 </section>
+ 1071 <!--[cf]-->
+ 1072 <!--[of]:Add or modify a language definition-->
+ 1073 <section>
+ 1074 <title>Add or Modify a Language Definition</title>
+ 1075 
+ 1076 <table>
+ 1077 <title>Attributes for a Language Definition</title>
+ 1078 <tgroup cols="2" align="left" colsep="1" rowsep="1">
+ 1079 
+ 1080 <thead>
+ 1081 <row>
+ 1082 <entry>Name</entry>
+ 1083 <entry>Description</entry>
+ 1084 </row>
+ 1085 </thead>
+ 1086 
+ 1087 <tbody>
+ 1088 
+ 1089 <row>
+ 1090 <entry>colorizer</entry>
+ 1091 <entry>
+ 1092 The name of the colorizer function.
+ 1093 <para>
+ 1094 It can be one of:
+ 1095 <itemizedlist>
+ 1096 <listitem>batch</listitem>
+ 1097 <listitem>css</listitem>
+ 1098 <listitem>generic</listitem>
+ 1099 <listitem>html</listitem>
+ 1100 <listitem>makefile</listitem>
+ 1101 <listitem>monochrome</listitem>
+ 1102 <listitem>python</listitem>
+ 1103 <listitem>ruby</listitem>
+ 1104 <listitem>sh</listitem>
+ 1105 <listitem>tex</listitem>
+ 1106 </itemizedlist>
+ 1107 Only the generic colorize function uses all of the following attributes.
+ 1108 </para>
+ 1109 </entry>
+ 1110 </row>
+ 1111 
+ 1112 <row>
+ 1113 <entry>line-comment</entry>
+ 1114 <entry>
+ 1115 The beginning of a comment line. This attribute is used for folding as well
+ 1116 as for colorization.
+ 1117 </entry>
+ 1118 </row>
+ 1119 
+ 1120 <row>
+ 1121 <entry>line-comment-2</entry>
+ 1122 <entry>
+ 1123 The beginning of an alternative comment line. This attribute is used for colorization only.
+ 1124 </entry>
+ 1125 </row>
+ 1126 
+ 1127 <row>
+ 1128 <entry>open-comment</entry>
+ 1129 <entry>
+ 1130 The beginning of a comment block. This attribute is used for folding as well as for colorization.
+ 1131 </entry>
+ 1132 </row>
+ 1133 
+ 1134 <row>
+ 1135 <entry>close-comment</entry>
+ 1136 <entry>
+ 1137 The end of a comment block
+ 1138 </entry>
+ 1139 </row>
+ 1140 
+ 1141 <row><entry>open-comment-2</entry><entry>The beginning of an alternative comment block</entry></row>
+ 1142 <row><entry>close-comment-2</entry><entry>The end of an alternative comment block</entry></row>
+ 1143 <row><entry>preprocessor</entry><entry>The preprocessor characters (e.g. '#')</entry></row>
+ 1144 <row><entry>hexa-prefix</entry><entry>The hexadecimal prefix (e.g. '0x')</entry></row>
+ 1145 <row><entry>extra-id-chars</entry><entry>Additional identifier chars that can be used in keywords. By default the identifier chars are <code>[_A-Za-z0-9]</code>. These additional chars do not apply to the first character of an identifier.</entry></row>
+ 1146 <row><entry>string-delimiter</entry><entry>The delimiter character for strings</entry></row>
+ 1147 <row><entry>string-escape-char</entry><entry>The escape character inside strings</entry></row>
+ 1148 <row><entry>multiline-string-delimiter</entry><entry>The delimiter character for multiline strings</entry></row>
+ 1149 <row><entry>regex-delimiter</entry><entry>The delimiter character for regex (e.g. '/' in Ruby)</entry></row>
+ 1150 <row><entry>regex-escape-char</entry><entry>The escape character inside a regex (e.g. '\' in Ruby)</entry></row>
+ 1151 <row><entry>char-delimiter</entry><entry>The delimiter character for characters (or alternative strings)</entry></row>
+ 1152 <row><entry>char-escape-char</entry><entry>The escape character inside characters</entry></row>
+ 1153 <row><entry>multiline-char-delimiter</entry><entry>The delimiter character for multiline characters (or alternative strings)</entry></row>
+ 1154 <row><entry>char-prefix</entry><entry>The prefix character for chars (e.g. '$' in Smalltalk)</entry></row>
+ 1155 <row><entry>variable-prefix</entry><entry>The prefix character for a variable (e.g. '$' in php). It will highlight this character and the following word with the same color as for words-4</entry></row>
+ 1156 <row><entry>escape-char</entry><entry>The escape character</entry></row>
+ 1157 <row><entry>ignore-case</entry><entry>'true' if keywords are not case sensitive</entry></row>
+ 1158 <row><entry>words-1</entry><entry>First class of words</entry></row>
+ 1159 <row><entry>words-2</entry><entry>Second class of words</entry></row>
+ 1160 <row><entry>words-3</entry><entry>Third class of words</entry></row>
+ 1161 <row><entry>words-4</entry><entry>Fourth class of words</entry></row>
+ 1162 <row><entry>chars-1</entry><entry>First class of chars</entry></row>
+ 1163 <row><entry>chars-2</entry><entry>Second class of chars</entry></row>
+ 1164 <row><entry>chars-3</entry><entry>Third class of chars</entry></row>
+ 1165 <row><entry>chars-4</entry><entry>Fourth class of chars</entry></row>
+ 1166 
+ 1167 </tbody>
+ 1168 </tgroup>
+ 1169 </table>
+ 1170 
+ 1171 </section>
+ 1172 <!--[cf]-->
+ 1173 
+ 1174 </chapter>
+ 1175 <!--[cf]-->
+ 1176 <!--[of]:   Command Line Reference-->
+ 1177 <chapter>
+ 1178 <title>Command Line Reference</title>
+ 1179 
+ 1180 <!--[of]:Usage-->
+ 1181 <section>
+ 1182 <title>Usage</title>
+ 1183 
+ 1184 <para><code>code-browser [-i] [-c config] file1 file2 ...</code></para>
+ 1185 
+ 1186 <para>Starts the editor and opens a window for each file specified in command
+ 1187 line. Each file name can be followed by a colon and a line number to force the
+ 1188 file to be opened at a particular line:</para>
+ 1189 <para><code>filename:line</code></para>
+ 1190 
+ 1191 <variablelist>
+ 1192 
+ 1193 <varlistentry><term>-i</term>
+ 1194 <listitem>
+ 1195 <para>This switch forces to create a new instance of the editor, overridding the 
+ 1196 <varname>allow-multiple-instances</varname> option in the configuration
+ 1197 file.
+ 1198 </para>
+ 1199 </listitem>
+ 1200 </varlistentry>
+ 1201 
+ 1202 <varlistentry><term>-c config</term>
+ 1203 <listitem>
+ 1204 <para>This option specifies a configuration file that will be merged to 
+ 1205 <filename>preferences.cbc</filename>.
+ 1206 It allows for instance to specify project specific tools.</para>
+ 1207 
+ 1208 <para>Example of custom preferences:
+ 1209 <programlisting>
+ 1210 def tools
+ 1211 
+ 1212     def build-cb
+ 1213         caption = Build Code Browser
+ 1214         command = cmd.exe
+ 1215         arguments = /c build.bat
+ 1216         directory = c:\projects\code-browser
+ 1217         save-all = true
+ 1218         hot-key = F7
+ 1219     end
+ 1220 
+ 1221     def run-cb
+ 1222         caption = Run Code Browser
+ 1223         command = cb.exe
+ 1224         directory = c:\projects\code-browser
+ 1225         show-window = true
+ 1226         hot-key = F5
+ 1227     end
+ 1228 
+ 1229 end
+ 1230 </programlisting>
+ 1231 These tools will be added to the user tools defined in <filename>preferences.cbc</filename>.
+ 1232 </para>
+ 1233 <para>
+ 1234 With this option, the <varname>-i</varname> switch is implicit.
+ 1235 </para>
+ 1236 </listitem>
+ 1237 </varlistentry>
+ 1238 
+ 1239 </variablelist>
+ 1240 
+ 1241 </section>
+ 1242 <!--[cf]-->
+ 1243 
+ 1244 </chapter>
+ 1245 <!--[cf]-->
+ 1246 <!--[of]:   Miscellaneous-->
+ 1247 <appendix>
+ 1248 <title>Miscellaneous</title>
+ 1249 
+ 1250 <!--[of]:Tips-->
+ 1251 <section>
+ 1252 <title>Tips</title>
+ 1253 
+ 1254 <para>
+ 1255 This is a various collection of tips to better use the potential of the program.
+ 1256 </para>
+ 1257 
+ 1258 <simplesect>
+ 1259 <title>Getting the full path of a file</title>
+ 1260 
+ 1261 <para>To get the full path of the current file, use the <guimenuitem>File/Files...</guimenuitem> menu
+ 1262 command (<code>ALT-F F</code>). The path of the current file is displayed at the bottom of the window.
+ 1263 
+ 1264 </para>
+ 1265 
+ 1266 </simplesect>
+ 1267 
+ 1268 <simplesect>
+ 1269 <title>Using a Project File</title>
+ 1270 
+ 1271 <para>Code Browser does not handle projects, but it is easy to create a 
+ 1272 file to access all files of a project: just create a file 
+ 1273 <filename>project.cbi</filename> and then add links to the source files.
+ 1274 </para>
+ 1275 
+ 1276 </simplesect>
+ 1277 
+ 1278 <simplesect>
+ 1279 <title>Transforming Text to Comment and Vice Versa</title>
+ 1280 
+ 1281 <para>The <guimenuitem>Text Line</guimenuitem> and 
+ 1282 <guimenuitem>Comment Line</guimenuitem> commands in the
+ 1283 <guimenu>Insert</guimenu> menu can be used to transform the current 
+ 1284 selection into comment or text.
+ 1285 It can be useful to comment/uncomment source code, but also to transform
+ 1286 source comments into Code Browser comments.</para>
+ 1287 
+ 1288 </simplesect>
+ 1289 
+ 1290 </section>
+ 1291 <!--[cf]-->
+ 1292 
+ 1293 </appendix>
+ 1294 <!--[cf]-->
+ 1295 </book>
