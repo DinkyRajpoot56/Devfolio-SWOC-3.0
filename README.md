@@ -84,6 +84,10 @@ Furthermore, machine learning does not require the same costly, high-end machine
 In the end, many data scientists choose traditional machine learning over deep learning due to its superior interpretability, or the ability to make sense of the solutions. Machine learning algorithms are also preferred when the data is small.
 
 Instances where deep learning becomes preferable include situations where there is a large amount of data, a lack of domain understanding for feature introspection, or complex problems, such as speech recognition and NLP.
+![image](https://user-images.githubusercontent.com/111672121/214531690-6b0da1f4-f677-448d-8610-32213f428e16.png)
+![image](https://user-images.githubusercontent.com/111672121/214531960-f6d62db0-df38-4494-922c-43601047a707.png)
+
+
 ....
 ....
 ....
@@ -392,6 +396,12 @@ Use of the Fossies software archive is entirely at your own risk - no warranty i
  ....
  ....
  ....
+ ![image](https://user-images.githubusercontent.com/111672121/214532409-e97ed791-5ed5-4bd4-aad1-7ae4466f2245.png)
+
  TERMINAL PORTFOLIO=Terminal Style Portfolio made with HTML / CSS / JS
+ ![image](https://user-images.githubusercontent.com/111672121/214532925-27760a38-2ee7-48ba-88c9-1caf80f292b4.png)
+![image](https://user-images.githubusercontent.com/111672121/214533085-fb1c486f-49c2-4b4a-a9ee-8095a65620a7.png)
+![image](https://user-images.githubusercontent.com/111672121/214533245-e09553d3-93c9-4fca-a39c-0977427784d4.png)
+
 
 
