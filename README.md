@@ -1,1 +1,13 @@
 # Devfolio-SWOC-3.0
+List Of Contributions-
+1.Deep-Learning-Simplified
+2.Terminal Portfolios
+3.Dino
+4.Docbook
+5.Front-End-Projects
+6.CSSdesigns-effects
+7.Algorithms
+....
+....
+....
+Deep-Learning-Simplified=It includes description of Multilayer Perceptrons,Radial Basis Function Networks,Convolutional Neural Networks,Recurrent Neural Networks,Long -Short-term Memory Networks,Restricted Boltzmann Machines,Self-organising Maps,Generative Adversarial Networks,Autoencoders Deep Learning Algorithm,Deep belief Algorithm......
